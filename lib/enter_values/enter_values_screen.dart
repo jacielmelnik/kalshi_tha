@@ -11,11 +11,21 @@ class EnterValuesScreen extends StatefulWidget {
 
 class _EnterValuesScreenState extends State<EnterValuesScreen> {
   late final EnterValuesBloc _bloc;
+  final TextEditingController _annualIncomeController = TextEditingController();
+  final TextEditingController _monthlyCostsController = TextEditingController();
+  final FocusNode _monthlyCostsFocusNode = FocusNode();
 
   @override
   void initState() {
     _bloc = EnterValuesBloc();
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _annualIncomeController.dispose();
+    _monthlyCostsController.dispose();
+    super.dispose();
   }
 
   @override
@@ -31,9 +41,37 @@ class _EnterValuesScreenState extends State<EnterValuesScreen> {
               Text('Financial wellness test'),
               Text('Enter your financial information below'),
               Text('Annual income'),
-              TextField(),
+              TextField(
+                controller: _annualIncomeController,
+                keyboardType: TextInputType.number,
+                onChanged: (value) {
+                  if (onlyNumbersMask.allMatches(value).length !=
+                      value.length) {
+                    _annualIncomeController.clear();
+                  }
+                },
+                onSubmitted: (_) {
+                  _monthlyCostsFocusNode.requestFocus();
+                },
+              ),
               Text('Monthly Costs'),
-              TextField(),
+              TextField(
+                controller: _monthlyCostsController,
+                focusNode: _monthlyCostsFocusNode,
+                keyboardType: TextInputType.number,
+                onChanged: (value) {
+                  if (onlyNumbersMask.allMatches(value).length !=
+                      value.length) {
+                    _monthlyCostsController.clear();
+                  }
+                },
+                onSubmitted: (_) {
+                  if (_annualIncomeController.text.isNotEmpty &&
+                      _monthlyCostsController.text.isNotEmpty) {
+                    _bloc.didTapContinueButton(context);
+                  }
+                },
+              ),
               ElevatedButton(
                 onPressed: () => _bloc.didTapContinueButton(context),
                 child: Text('Continue'),
