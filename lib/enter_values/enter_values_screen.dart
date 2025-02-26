@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kalshi_tha/constants.dart';
 import 'package:kalshi_tha/enter_values/enter_values_bloc.dart';
 
 class EnterValuesScreen extends StatefulWidget {
@@ -20,7 +21,7 @@ class _EnterValuesScreenState extends State<EnterValuesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Center(child: Text('Kalshi'))),
+      appBar: AppBar(title: Center(child: Image.asset(kalshiLogo))),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
