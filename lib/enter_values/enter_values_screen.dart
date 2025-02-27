@@ -102,14 +102,23 @@ class _EnterValuesScreenState extends State<EnterValuesScreen> {
                           onSubmited: (_) {
                             if (_annualIncomeController.text.isNotEmpty &&
                                 _monthlyCostsController.text.isNotEmpty) {
-                              _bloc.didTapContinueButton(context);
+                              _bloc.didTapContinueButton(
+                                context: context,
+                                annualIncome: _annualIncomeController.text,
+                                monthlyCosts: _monthlyCostsController.text,
+                              );
                             }
                           },
                         ),
                         spacing.v16,
                         CtaButton(
                           buttonText: continueButtonText,
-                          onPressed: () => _bloc.didTapContinueButton(context),
+                          onPressed:
+                              () => _bloc.didTapContinueButton(
+                                context: context,
+                                annualIncome: _annualIncomeController.text,
+                                monthlyCosts: _monthlyCostsController.text,
+                              ),
                         ),
                       ],
                     ),
