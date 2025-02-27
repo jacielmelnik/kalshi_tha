@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kalshi_tha/result/result_screen.dart';
+import 'package:kalshi_tha/shared/formatter.dart';
 
 class EnterValuesBloc {
   void didTapContinueButton({
@@ -7,14 +8,13 @@ class EnterValuesBloc {
     required String annualIncome,
     required String monthlyCosts,
   }) {
-    int income = _convertStringToInt(annualIncome);
-    int costs = _convertStringToInt(monthlyCosts);
+    assert(Formatter.canParseString(annualIncome));
+    assert(Formatter.canParseString(monthlyCosts));
+
+    int income = Formatter.parseString(annualIncome);
+    int costs = Formatter.parseString(monthlyCosts);
 
     _navigateToResult(context, income, costs);
-  }
-
-  int _convertStringToInt(String value) {
-    return int.parse(value.replaceAll(',', ''));
   }
 
   void _navigateToResult(
@@ -30,6 +30,7 @@ class EnterValuesBloc {
               annualIncome: annualIncome,
               monthlyCosts: monthlyCosts,
             ),
+        settings: RouteSettings(name: '/resultScreen'),
       ),
     );
   }
