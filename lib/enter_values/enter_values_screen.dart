@@ -4,6 +4,8 @@ import 'package:kalshi_tha/enter_values/enter_values_bloc.dart';
 import 'package:kalshi_tha/enter_values/enter_values_constants.dart';
 import 'package:kalshi_tha/enter_values/widget/enter_value_text_field.dart';
 import 'package:kalshi_tha/theme/theme_constants.dart';
+import 'package:kalshi_tha/widgets/cta_button.dart';
+import 'package:kalshi_tha/widgets/disclaimer_footer.dart';
 
 class EnterValuesScreen extends StatefulWidget {
   const EnterValuesScreen({super.key});
@@ -36,7 +38,8 @@ class _EnterValuesScreenState extends State<EnterValuesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(child: Image.asset(kalshiLogo)),
+        title: Image.asset(kalshiLogo),
+        centerTitle: true,
         backgroundColor: Colors.white,
       ),
       backgroundColor: Colors.white,
@@ -52,9 +55,12 @@ class _EnterValuesScreenState extends State<EnterValuesScreen> {
                   textAlign: TextAlign.center,
                   text: TextSpan(
                     children: [
-                      TextSpan(text: titlePart1, style: typography.subtitle),
                       TextSpan(
-                        text: titlePart2,
+                        text: enterValuesTitlePart1,
+                        style: typography.subtitle,
+                      ),
+                      TextSpan(
+                        text: enterValuesTitlePart2,
                         style: typography.subtitleSemiBold,
                       ),
                     ],
@@ -101,43 +107,16 @@ class _EnterValuesScreenState extends State<EnterValuesScreen> {
                           },
                         ),
                         spacing.v16,
-                        ElevatedButton(
-                          style: ButtonStyle(
-                            backgroundColor: WidgetStatePropertyAll(
-                              color.primary,
-                            ),
-                          ),
+                        CtaButton(
+                          buttonText: continueButtonText,
                           onPressed: () => _bloc.didTapContinueButton(context),
-                          child: SizedBox(
-                            height: 56.0,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Text(
-                                  continueButtonText,
-                                  style: typography.buttonText,
-                                ),
-                              ],
-                            ),
-                          ),
                         ),
                       ],
                     ),
                   ),
                 ),
                 spacing.v24,
-                Column(
-                  children: [
-                    Image.asset(lockIcon, height: 24.0, width: 24.0),
-                    spacing.v16,
-                    Text(
-                      footerText,
-                      textAlign: TextAlign.center,
-                      style: typography.description,
-                    ),
-                  ],
-                ),
+                DisclaimerFooter(),
               ],
             ),
           ),
