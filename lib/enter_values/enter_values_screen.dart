@@ -3,6 +3,7 @@ import 'package:kalshi_tha/constants.dart';
 import 'package:kalshi_tha/enter_values/enter_values_bloc.dart';
 import 'package:kalshi_tha/enter_values/enter_values_constants.dart';
 import 'package:kalshi_tha/enter_values/widget/enter_value_text_field.dart';
+import 'package:kalshi_tha/theme/theme_constants.dart';
 
 class EnterValuesScreen extends StatefulWidget {
   const EnterValuesScreen({super.key});
@@ -46,35 +47,23 @@ class _EnterValuesScreenState extends State<EnterValuesScreen> {
             padding: const EdgeInsets.all(16.0),
             child: Column(
               children: [
-                SizedBox(height: 24.0),
+                spacing.v24,
                 RichText(
                   textAlign: TextAlign.center,
                   text: TextSpan(
                     children: [
-                      TextSpan(
-                        text: titlePart1,
-                        style: TextStyle(
-                          fontSize: 20.0,
-                          fontFamily: 'WorkSans',
-                          color: Color(0xFF001C95),
-                        ),
-                      ),
+                      TextSpan(text: titlePart1, style: typography.subtitle),
                       TextSpan(
                         text: titlePart2,
-                        style: TextStyle(
-                          fontSize: 20.0,
-                          fontFamily: 'WorkSans',
-                          fontWeight: FontWeight.w600,
-                          color: Color(0xFF001C95),
-                        ),
+                        style: typography.subtitleSemiBold,
                       ),
                     ],
                   ),
                 ),
-                SizedBox(height: 24.0),
+                spacing.v24,
                 Card(
-                  color: Colors.white,
-                  shadowColor: Color(0x1E2A3214),
+                  color: color.white,
+                  shadowColor: color.shadowColor,
                   elevation: 10.0,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(8.0)),
@@ -89,26 +78,10 @@ class _EnterValuesScreenState extends State<EnterValuesScreen> {
                           width: 48.0,
                           height: 48.0,
                         ),
-                        SizedBox(height: 16.0),
-                        Text(
-                          cardTitle,
-                          style: TextStyle(
-                            fontSize: 20.0,
-                            fontFamily: 'Rubik',
-                            fontWeight: FontWeight.w500,
-                            color: Color(0xFF1E2A32),
-                          ),
-                        ),
-                        Text(
-                          cardSubtitle,
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            fontFamily: 'WorkSans',
-                            fontWeight: FontWeight.w400,
-                            color: Color(0xFF708797),
-                          ),
-                        ),
-                        SizedBox(height: 16.0),
+                        spacing.v16,
+                        Text(cardTitle, style: typography.headingSmall),
+                        Text(cardSubtitle, style: typography.paragraph),
+                        spacing.v16,
                         EnterValueTextField(
                           title: annualIncomeText,
                           controller: _annualIncomeController,
@@ -116,7 +89,7 @@ class _EnterValuesScreenState extends State<EnterValuesScreen> {
                             _monthlyCostsFocusNode.requestFocus();
                           },
                         ),
-                        SizedBox(height: 16.0),
+                        spacing.v16,
                         EnterValueTextField(
                           title: monthlyCostText,
                           controller: _monthlyCostsController,
@@ -127,11 +100,11 @@ class _EnterValuesScreenState extends State<EnterValuesScreen> {
                             }
                           },
                         ),
-                        SizedBox(height: 16.0),
+                        spacing.v16,
                         ElevatedButton(
                           style: ButtonStyle(
                             backgroundColor: WidgetStatePropertyAll(
-                              Color(0xFF001C95),
+                              color.primary,
                             ),
                           ),
                           onPressed: () => _bloc.didTapContinueButton(context),
@@ -143,12 +116,7 @@ class _EnterValuesScreenState extends State<EnterValuesScreen> {
                               children: [
                                 Text(
                                   continueButtonText,
-                                  style: TextStyle(
-                                    fontSize: 16.0,
-                                    fontFamily: 'WorkSans',
-                                    fontWeight: FontWeight.w500,
-                                    color: Colors.white,
-                                  ),
+                                  style: typography.buttonText,
                                 ),
                               ],
                             ),
@@ -158,20 +126,15 @@ class _EnterValuesScreenState extends State<EnterValuesScreen> {
                     ),
                   ),
                 ),
-                SizedBox(height: 24.0),
+                spacing.v24,
                 Column(
                   children: [
                     Image.asset(lockIcon, height: 24.0, width: 24.0),
-                    SizedBox(height: 16.0),
+                    spacing.v16,
                     Text(
                       footerText,
                       textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 12.0,
-                        fontFamily: 'WorkSans',
-                        fontWeight: FontWeight.w400,
-                        color: Color(0xFF708797),
-                      ),
+                      style: typography.description,
                     ),
                   ],
                 ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:kalshi_tha/constants.dart';
+import 'package:kalshi_tha/theme/theme_constants.dart';
 
 class EnterValueTextField extends StatefulWidget {
   final String title;
@@ -25,17 +26,7 @@ class _EnterValueTextFieldState extends State<EnterValueTextField> {
       children: [
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              widget.title,
-              style: TextStyle(
-                fontSize: 12.0,
-                fontFamily: 'WorkSans',
-                fontWeight: FontWeight.w400,
-                color: Color(0xFF1E2A32),
-              ),
-            ),
-          ],
+          children: [Text(widget.title, style: typography.description)],
         ),
         SizedBox(height: 4.0),
         TextField(
@@ -52,10 +43,8 @@ class _EnterValueTextFieldState extends State<EnterValueTextField> {
               borderRadius: BorderRadius.all(Radius.circular(4.0)),
             ),
           ),
-          style: TextStyle(
+          style: typography.headingSmall.copyWith(
             fontSize: 24.0,
-            fontFamily: 'Rubik',
-            fontWeight: FontWeight.w500,
             color: Color(0xFF4D6475),
           ),
           controller: widget.controller,
