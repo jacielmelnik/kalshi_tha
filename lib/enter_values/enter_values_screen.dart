@@ -82,8 +82,14 @@ class _EnterValuesScreenState extends State<EnterValuesScreen> {
                       children: [
                         FinancialWellnessIcon(),
                         spacing.v16,
-                        Text(cardTitle, style: typography.headingSmall),
-                        Text(cardSubtitle, style: typography.paragraph),
+                        Text(
+                          enterValuesCardTitle,
+                          style: typography.headingSmall,
+                        ),
+                        Text(
+                          enterValuesCardSubtitle,
+                          style: typography.paragraph,
+                        ),
                         spacing.v16,
                         EnterValueTextField(
                           title: annualIncomeText,
@@ -121,10 +127,10 @@ class _EnterValuesScreenState extends State<EnterValuesScreen> {
 
   void _didTapContinueButton() {
     if (_annualIncomeController.text.isEmpty) {
-      _showSnackBar('"Annual Income" field must be filled');
+      _showSnackBar(annualIncomeMissingSnackbarMessage);
       _annualIncomeFocusNode.requestFocus();
     } else if (_monthlyCostsController.text.isEmpty) {
-      _showSnackBar('"Monthly Costs" field must be filled');
+      _showSnackBar(monthlyCostsMissingSnackbarMessage);
       _monthlyCostsFocusNode.requestFocus();
     } else {
       _bloc.didTapContinueButton(
