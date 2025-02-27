@@ -53,16 +53,16 @@ class _EnterValuesScreenState extends State<EnterValuesScreen> {
                         text: titlePart1,
                         style: TextStyle(
                           fontSize: 20.0,
-                          fontFamily: 'Rubik',
-                          color: Color(0xFF1B31A8),
+                          fontFamily: 'WorkSans',
+                          color: Color(0xFF001C95),
                         ),
                       ),
                       TextSpan(
                         text: titlePart2,
                         style: TextStyle(
                           fontSize: 20.0,
-                          fontFamily: 'Rubik',
-                          fontWeight: FontWeight.bold,
+                          fontFamily: 'WorkSans',
+                          fontWeight: FontWeight.w600,
                           color: Color(0xFF001C95),
                         ),
                       ),
@@ -72,7 +72,8 @@ class _EnterValuesScreenState extends State<EnterValuesScreen> {
                 SizedBox(height: 24.0),
                 Card(
                   color: Colors.white,
-                  elevation: 2.0,
+                  shadowColor: Color(0x1E2A3214),
+                  elevation: 10.0,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(8.0)),
                   ),
@@ -92,7 +93,7 @@ class _EnterValuesScreenState extends State<EnterValuesScreen> {
                           style: TextStyle(
                             fontSize: 20.0,
                             fontFamily: 'Rubik',
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.w500,
                             color: Color(0xFF1E2A32),
                           ),
                         ),
@@ -100,7 +101,8 @@ class _EnterValuesScreenState extends State<EnterValuesScreen> {
                           cardSubtitle,
                           style: TextStyle(
                             fontSize: 14.0,
-                            fontFamily: 'Rubik',
+                            fontFamily: 'WorkSans',
+                            fontWeight: FontWeight.w400,
                             color: Color(0xFF708797),
                           ),
                         ),
@@ -112,7 +114,8 @@ class _EnterValuesScreenState extends State<EnterValuesScreen> {
                               'Annual income',
                               style: TextStyle(
                                 fontSize: 12.0,
-                                fontFamily: 'Rubik',
+                                fontFamily: 'WorkSans',
+                                fontWeight: FontWeight.w400,
                                 color: Color(0xFF1E2A32),
                               ),
                             ),
@@ -145,10 +148,9 @@ class _EnterValuesScreenState extends State<EnterValuesScreen> {
                           style: TextStyle(
                             fontSize: 24.0,
                             fontFamily: 'Rubik',
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.w500,
                             color: Color(0xFF4D6475),
                           ),
-
                           controller: _annualIncomeController,
                           keyboardType: TextInputType.number,
                           onChanged: (value) {
@@ -169,7 +171,8 @@ class _EnterValuesScreenState extends State<EnterValuesScreen> {
                               'Monthly Costs',
                               style: TextStyle(
                                 fontSize: 12.0,
-                                fontFamily: 'Rubik',
+                                fontFamily: 'WorkSans',
+                                fontWeight: FontWeight.w400,
                                 color: Color(0xFF1E2A32),
                               ),
                             ),
@@ -202,7 +205,7 @@ class _EnterValuesScreenState extends State<EnterValuesScreen> {
                           style: TextStyle(
                             fontSize: 24.0,
                             fontFamily: 'Rubik',
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.w500,
                             color: Color(0xFF4D6475),
                           ),
                           controller: _monthlyCostsController,
@@ -239,8 +242,8 @@ class _EnterValuesScreenState extends State<EnterValuesScreen> {
                                   continueButtonText,
                                   style: TextStyle(
                                     fontSize: 16.0,
-                                    fontFamily: 'Rubik',
-                                    fontWeight: FontWeight.bold,
+                                    fontFamily: 'WorkSans',
+                                    fontWeight: FontWeight.w500,
                                     color: Colors.white,
                                   ),
                                 ),
@@ -261,8 +264,9 @@ class _EnterValuesScreenState extends State<EnterValuesScreen> {
                       footerText,
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: 16.0,
-                        fontFamily: 'Rubik',
+                        fontSize: 12.0,
+                        fontFamily: 'WorkSans',
+                        fontWeight: FontWeight.w400,
                         color: Color(0xFF708797),
                       ),
                     ),
