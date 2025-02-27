@@ -6,6 +6,7 @@ import 'package:kalshi_tha/enter_values/widget/enter_value_text_field.dart';
 import 'package:kalshi_tha/theme/theme_constants.dart';
 import 'package:kalshi_tha/widgets/cta_button.dart';
 import 'package:kalshi_tha/widgets/disclaimer_footer.dart';
+import 'package:kalshi_tha/widgets/financial_wellness_icon.dart';
 
 class EnterValuesScreen extends StatefulWidget {
   const EnterValuesScreen({super.key});
@@ -40,14 +41,14 @@ class _EnterValuesScreenState extends State<EnterValuesScreen> {
       appBar: AppBar(
         title: Image.asset(kalshiLogo),
         centerTitle: true,
-        backgroundColor: Colors.white,
+        backgroundColor: color.white,
       ),
-      backgroundColor: Colors.white,
+      backgroundColor: color.white,
       resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(
         child: Center(
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: padding.all16,
             child: Column(
               children: [
                 spacing.v24,
@@ -71,19 +72,13 @@ class _EnterValuesScreenState extends State<EnterValuesScreen> {
                   color: color.white,
                   shadowColor: color.shadowColor,
                   elevation: 10.0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                  ),
+                  shape: RoundedRectangleBorder(borderRadius: border.all8),
                   child: Padding(
-                    padding: const EdgeInsets.all(16.0),
+                    padding: padding.all16,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Image.asset(
-                          financialWellnessIcon,
-                          width: 48.0,
-                          height: 48.0,
-                        ),
+                        FinancialWellnessIcon(),
                         spacing.v16,
                         Text(cardTitle, style: typography.headingSmall),
                         Text(cardSubtitle, style: typography.paragraph),
@@ -99,26 +94,13 @@ class _EnterValuesScreenState extends State<EnterValuesScreen> {
                         EnterValueTextField(
                           title: monthlyCostText,
                           controller: _monthlyCostsController,
-                          onSubmited: (_) {
-                            if (_annualIncomeController.text.isNotEmpty &&
-                                _monthlyCostsController.text.isNotEmpty) {
-                              _bloc.didTapContinueButton(
-                                context: context,
-                                annualIncome: _annualIncomeController.text,
-                                monthlyCosts: _monthlyCostsController.text,
-                              );
-                            }
-                          },
+                          focusNode: _monthlyCostsFocusNode,
+                          onSubmited: (_) => _didTapContinueButton(),
                         ),
                         spacing.v16,
                         CtaButton(
                           buttonText: continueButtonText,
-                          onPressed:
-                              () => _bloc.didTapContinueButton(
-                                context: context,
-                                annualIncome: _annualIncomeController.text,
-                                monthlyCosts: _monthlyCostsController.text,
-                              ),
+                          onPressed: () => _didTapContinueButton(),
                         ),
                       ],
                     ),
@@ -132,5 +114,16 @@ class _EnterValuesScreenState extends State<EnterValuesScreen> {
         ),
       ),
     );
+  }
+
+  void _didTapContinueButton() {
+    if (_annualIncomeController.text.isNotEmpty &&
+        _monthlyCostsController.text.isNotEmpty) {
+      _bloc.didTapContinueButton(
+        context: context,
+        annualIncome: _annualIncomeController.text,
+        monthlyCosts: _monthlyCostsController.text,
+      );
+    }
   }
 }
