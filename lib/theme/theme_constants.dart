@@ -5,6 +5,7 @@ class TypographyThemeConstants {
   final TextStyle subtitleSemiBold;
   final TextStyle headingSmall;
   final TextStyle paragraph;
+  final TextStyle paragraphSemiBold;
   final TextStyle buttonText;
   final TextStyle description;
 
@@ -32,6 +33,12 @@ class TypographyThemeConstants {
       fontWeight: FontWeight.w400,
       color: Color(0xFF708797),
     ),
+    this.paragraphSemiBold = const TextStyle(
+      fontSize: 14.0,
+      fontFamily: 'WorkSans',
+      fontWeight: FontWeight.w600,
+      color: Color(0xFF4D6475),
+    ),
     this.buttonText = const TextStyle(
       fontSize: 16.0,
       fontFamily: 'WorkSans',
@@ -52,10 +59,12 @@ TypographyThemeConstants get typography => TypographyThemeConstants();
 class SpacingConstants {
   final Widget v16;
   final Widget v24;
+  final Widget v32;
 
   SpacingConstants({
     this.v16 = const SizedBox(height: 16.0),
     this.v24 = const SizedBox(height: 24.0),
+    this.v32 = const SizedBox(height: 32.0),
   });
 }
 
