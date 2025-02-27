@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kalshi_tha/constants.dart';
 import 'package:kalshi_tha/enter_values/enter_values_bloc.dart';
 import 'package:kalshi_tha/enter_values/enter_values_constants.dart';
+import 'package:kalshi_tha/enter_values/widget/enter_value_text_field.dart';
 
 class EnterValuesScreen extends StatefulWidget {
   const EnterValuesScreen({super.key});
@@ -26,6 +27,7 @@ class _EnterValuesScreenState extends State<EnterValuesScreen> {
   void dispose() {
     _annualIncomeController.dispose();
     _monthlyCostsController.dispose();
+    _monthlyCostsFocusNode.dispose();
     super.dispose();
   }
 
@@ -107,117 +109,18 @@ class _EnterValuesScreenState extends State<EnterValuesScreen> {
                           ),
                         ),
                         SizedBox(height: 16.0),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Annual income',
-                              style: TextStyle(
-                                fontSize: 12.0,
-                                fontFamily: 'WorkSans',
-                                fontWeight: FontWeight.w400,
-                                color: Color(0xFF1E2A32),
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 4.0),
-                        TextField(
-                          decoration: InputDecoration(
-                            prefixIcon: Row(
-                              children: [
-                                SizedBox(width: 16.0),
-                                Image.asset(dolarSignIcon),
-                              ],
-                            ),
-                            prefixIconConstraints: BoxConstraints.tight(
-                              Size(44.0, 24.0),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(4.0),
-                              ),
-                              borderSide: BorderSide(color: Color(0xFFE9EEF2)),
-                            ),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(4.0),
-                              ),
-                            ),
-                          ),
-                          style: TextStyle(
-                            fontSize: 24.0,
-                            fontFamily: 'Rubik',
-                            fontWeight: FontWeight.w500,
-                            color: Color(0xFF4D6475),
-                          ),
+                        EnterValueTextField(
+                          title: annualIncomeText,
                           controller: _annualIncomeController,
-                          keyboardType: TextInputType.number,
-                          onChanged: (value) {
-                            if (onlyNumbersMask.allMatches(value).length !=
-                                value.length) {
-                              _annualIncomeController.clear();
-                            }
-                          },
-                          onSubmitted: (_) {
+                          onSubmited: (_) {
                             _monthlyCostsFocusNode.requestFocus();
                           },
                         ),
                         SizedBox(height: 16.0),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Monthly Costs',
-                              style: TextStyle(
-                                fontSize: 12.0,
-                                fontFamily: 'WorkSans',
-                                fontWeight: FontWeight.w400,
-                                color: Color(0xFF1E2A32),
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 4.0),
-                        TextField(
-                          decoration: InputDecoration(
-                            prefixIcon: Row(
-                              children: [
-                                SizedBox(width: 16.0),
-                                Image.asset(dolarSignIcon),
-                              ],
-                            ),
-                            prefixIconConstraints: BoxConstraints.tight(
-                              Size(44.0, 24.0),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(4.0),
-                              ),
-                              borderSide: BorderSide(color: Color(0xFFE9EEF2)),
-                            ),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(4.0),
-                              ),
-                            ),
-                          ),
-                          style: TextStyle(
-                            fontSize: 24.0,
-                            fontFamily: 'Rubik',
-                            fontWeight: FontWeight.w500,
-                            color: Color(0xFF4D6475),
-                          ),
+                        EnterValueTextField(
+                          title: monthlyCostText,
                           controller: _monthlyCostsController,
-                          focusNode: _monthlyCostsFocusNode,
-                          keyboardType: TextInputType.number,
-                          onChanged: (value) {
-                            if (onlyNumbersMask.allMatches(value).length !=
-                                value.length) {
-                              _monthlyCostsController.clear();
-                            }
-                          },
-                          onSubmitted: (_) {
+                          onSubmited: (_) {
                             if (_annualIncomeController.text.isNotEmpty &&
                                 _monthlyCostsController.text.isNotEmpty) {
                               _bloc.didTapContinueButton(context);
