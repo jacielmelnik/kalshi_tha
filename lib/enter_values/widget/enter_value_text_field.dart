@@ -6,6 +6,7 @@ import 'package:kalshi_tha/theme/theme_constants.dart';
 class EnterValueTextField extends StatefulWidget {
   final String title;
   final TextEditingController controller;
+  final Function(String) onChanged;
   final Function(String) onSubmited;
 
   final FocusNode? focusNode;
@@ -14,6 +15,7 @@ class EnterValueTextField extends StatefulWidget {
     super.key,
     required this.title,
     required this.controller,
+    required this.onChanged,
     required this.onSubmited,
     this.focusNode,
   });
@@ -52,41 +54,10 @@ class _EnterValueTextFieldState extends State<EnterValueTextField> {
           focusNode: widget.focusNode,
           keyboardType: TextInputType.number,
           inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-          onChanged: (value) {
-            widget.controller.text = formatValue(value);
-          },
+          onChanged: widget.onChanged,
           onSubmitted: widget.onSubmited,
         ),
       ],
     );
-  }
-
-  //This function will format the String value to allow ponctuation,
-  //separating with a ',' blocs of 3 numbers.
-  //Ex.: '100', '1,000', '10,000', '100,000', '1,000,000'.
-  String formatValue(String value) {
-    //This will remove any leftmost zeros, even if the value is copy pasted
-    while (value.startsWith('0')) {
-      value = value.replaceFirst('0', '');
-    }
-
-    if (value.length > 3) {
-      int iterations = (value.length / 3).truncate();
-      int index = value.length;
-      String newValue = '';
-
-      for (int i = iterations; i > 0; i--) {
-        newValue = ',${value.substring(index - 3, index)}$newValue';
-        index -= 3;
-      }
-
-      newValue =
-          (index == 0)
-              ? newValue.replaceFirst(',', '')
-              : '${value.substring(0, index)}$newValue';
-
-      return newValue;
-    }
-    return value;
   }
 }

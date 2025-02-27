@@ -95,6 +95,10 @@ class _EnterValuesScreenState extends State<EnterValuesScreen> {
                           title: annualIncomeText,
                           controller: _annualIncomeController,
                           focusNode: _annualIncomeFocusNode,
+                          onChanged: (value) {
+                            _annualIncomeController
+                                .text = _formatTextFieldValue(value);
+                          },
                           onSubmited: (_) {
                             _monthlyCostsFocusNode.requestFocus();
                           },
@@ -104,6 +108,10 @@ class _EnterValuesScreenState extends State<EnterValuesScreen> {
                           title: monthlyCostText,
                           controller: _monthlyCostsController,
                           focusNode: _monthlyCostsFocusNode,
+                          onChanged: (value) {
+                            _monthlyCostsController
+                                .text = _formatTextFieldValue(value);
+                          },
                           onSubmited: (_) => _didTapContinueButton(),
                         ),
                         spacing.v16,
@@ -123,6 +131,35 @@ class _EnterValuesScreenState extends State<EnterValuesScreen> {
         ),
       ),
     );
+  }
+
+  //This function will format the String value to allow ponctuation,
+  //separating with a ',' blocs of 3 numbers.
+  //Ex.: '100', '1,000', '10,000', '100,000', '1,000,000'.
+  String _formatTextFieldValue(String value) {
+    //This will remove any leftmost zeros, even if the value is copy pasted
+    while (value.startsWith('0')) {
+      value = value.replaceFirst('0', '');
+    }
+
+    if (value.length > 3) {
+      int iterations = (value.length / 3).truncate();
+      int index = value.length;
+      String newValue = '';
+
+      for (int i = iterations; i > 0; i--) {
+        newValue = ',${value.substring(index - 3, index)}$newValue';
+        index -= 3;
+      }
+
+      newValue =
+          (index == 0)
+              ? newValue.replaceFirst(',', '')
+              : '${value.substring(0, index)}$newValue';
+
+      return newValue;
+    }
+    return value;
   }
 
   void _didTapContinueButton() {
