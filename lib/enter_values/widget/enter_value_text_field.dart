@@ -65,6 +65,11 @@ class _EnterValueTextFieldState extends State<EnterValueTextField> {
   //separating with a ',' blocs of 3 numbers.
   //Ex.: '100', '1,000', '10,000', '100,000', '1,000,000'.
   String formatValue(String value) {
+    //This will remove any leftmost zeros, even if the value is copy pasted
+    while (value.startsWith('0')) {
+      value = value.replaceFirst('0', '');
+    }
+
     if (value.length > 3) {
       int iterations = (value.length / 3).truncate();
       int index = value.length;
