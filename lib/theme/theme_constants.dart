@@ -74,11 +74,20 @@ class ColorConstants {
   final Color primary;
   final Color white;
   final Color shadowColor;
+  final Color lightGray;
+
+  final Color green;
+  final Color yellow;
+  final Color red;
 
   ColorConstants({
     this.primary = const Color(0xFF001C95),
     this.white = const Color(0xFFFFFFFF),
     this.shadowColor = const Color(0x141E2A32),
+    this.lightGray = const Color(0xFFE9EEF2),
+    this.green = const Color(0xFF04C761),
+    this.yellow = const Color(0xFFFFC032),
+    this.red = const Color(0xFFD32A36),
   });
 }
 

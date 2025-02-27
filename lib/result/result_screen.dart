@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kalshi_tha/constants.dart';
 import 'package:kalshi_tha/result/result_constants.dart';
+import 'package:kalshi_tha/result/widget/result_progress_bar.dart';
 import 'package:kalshi_tha/theme/theme_constants.dart';
 import 'package:kalshi_tha/widgets/cta_button.dart';
 import 'package:kalshi_tha/widgets/disclaimer_footer.dart';
@@ -63,7 +64,12 @@ class _ResultScreenState extends State<ResultScreen> {
                         height: 48.0,
                       ),
                       spacing.v24,
-                      Text('TODO: Add the results bar here'),
+                      ResultProgressBar(
+                        widgetSize: (MediaQuery.of(context).size.width - 64.0),
+                        firstSegmentColor: color.green,
+                        secondSegmentColor: color.green,
+                        thirdSegmentColor: color.green,
+                      ),
                       spacing.v24,
                       Text('Congratulations!', style: typography.headingSmall),
                       RichText(
@@ -72,7 +78,9 @@ class _ResultScreenState extends State<ResultScreen> {
                           children: [
                             TextSpan(
                               text: 'Your financial wellness score is \n',
-                              style: typography.paragraph,
+                              style: typography.paragraph.copyWith(
+                                color: Color(0xFF4D6475),
+                              ),
                             ),
                             TextSpan(
                               text: 'Healthy',
