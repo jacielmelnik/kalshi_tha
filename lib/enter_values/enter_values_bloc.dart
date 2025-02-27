@@ -7,10 +7,14 @@ class EnterValuesBloc {
     required String annualIncome,
     required String monthlyCosts,
   }) {
-    int income = int.parse(annualIncome.replaceAll(',', ''));
-    int costs = int.parse(monthlyCosts.replaceAll(',', ''));
+    int income = _convertStringToInt(annualIncome);
+    int costs = _convertStringToInt(monthlyCosts);
 
     _navigateToResult(context, income, costs);
+  }
+
+  int _convertStringToInt(String value) {
+    return int.parse(value.replaceAll(',', ''));
   }
 
   void _navigateToResult(
