@@ -19,6 +19,7 @@ class _EnterValuesScreenState extends State<EnterValuesScreen> {
   late final EnterValuesBloc _bloc;
   final TextEditingController _annualIncomeController = TextEditingController();
   final TextEditingController _monthlyCostsController = TextEditingController();
+  final FocusNode _annualIncomeFocusNode = FocusNode();
   final FocusNode _monthlyCostsFocusNode = FocusNode();
 
   @override
@@ -31,6 +32,7 @@ class _EnterValuesScreenState extends State<EnterValuesScreen> {
   void dispose() {
     _annualIncomeController.dispose();
     _monthlyCostsController.dispose();
+    _annualIncomeFocusNode.dispose();
     _monthlyCostsFocusNode.dispose();
     super.dispose();
   }
@@ -86,6 +88,7 @@ class _EnterValuesScreenState extends State<EnterValuesScreen> {
                         EnterValueTextField(
                           title: annualIncomeText,
                           controller: _annualIncomeController,
+                          focusNode: _annualIncomeFocusNode,
                           onSubmited: (_) {
                             _monthlyCostsFocusNode.requestFocus();
                           },
@@ -117,13 +120,29 @@ class _EnterValuesScreenState extends State<EnterValuesScreen> {
   }
 
   void _didTapContinueButton() {
-    if (_annualIncomeController.text.isNotEmpty &&
-        _monthlyCostsController.text.isNotEmpty) {
+    if (_annualIncomeController.text.isEmpty) {
+      _showSnackBar('"Annual Income" field must be filled');
+      _annualIncomeFocusNode.requestFocus();
+    } else if (_monthlyCostsController.text.isEmpty) {
+      _showSnackBar('"Monthly Costs" field must be filled');
+      _monthlyCostsFocusNode.requestFocus();
+    } else {
       _bloc.didTapContinueButton(
         context: context,
         annualIncome: _annualIncomeController.text,
         monthlyCosts: _monthlyCostsController.text,
       );
     }
+  }
+
+  void _showSnackBar(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          message,
+          style: typography.description.copyWith(color: color.white),
+        ),
+      ),
+    );
   }
 }
