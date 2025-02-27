@@ -1,7 +1,7 @@
-const kalshiLogo = 'assets/kalshi_logo_black.png';
-const financialWellnessIcon = 'assets/financial_wellness_icon.png';
-const dolarSignIcon = 'assets/dollar_sign_icon.png';
-const lockIcon = 'assets/lock_icon.png';
+const kalshiLogo = 'assets/images/kalshi_logo_black.png';
+const financialWellnessIcon = 'assets/images/financial_wellness_icon.png';
+const dolarSignIcon = 'assets/images/dollar_sign_icon.png';
+const lockIcon = 'assets/images/lock_icon.png';
 
 final onlyNumbersMask = RegExp('([0-9])');
 
