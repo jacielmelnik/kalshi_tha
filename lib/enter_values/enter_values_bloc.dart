@@ -3,8 +3,8 @@ import 'package:kalshi_tha/result/result_screen.dart';
 import 'package:kalshi_tha/shared/formatter.dart';
 
 class EnterValuesBloc {
-  void didTapContinueButton({
-    required BuildContext context,
+  void didTapContinueButton(
+    BuildContext context, {
     required String annualIncome,
     required String monthlyCosts,
   }) {
